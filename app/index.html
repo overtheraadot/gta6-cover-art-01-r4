@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Sunset Split — GTA-Style Cover Maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">VS</span> VICE SUNSET SPLIT</div>
+  <div class="topbar-note">Offline cover maker &middot; photos never leave your machine</div>
+</header>
+<main class="workbench">
+  <section class="controls" aria-label="Cover controls">
+    <h2>Build your cover</h2>
+
+    <div class="group">
+      <label class="group-label">1 &middot; Photos</label>
+      <div class="photo-row">
+        <label class="btn file-btn">Upload photo
+          <input type="file" id="fileInput" accept="image/*" hidden>
+        </label>
+        <button class="btn" id="sampleBtn" type="button">Load sample photo</button>
+      </div>
+      <label class="check"><input type="checkbox" id="samePhoto" checked> Same photo in all panels</label>
+      <p class="hint">Drag on a panel to pan the photo. Use the zoom slider to crop in closer.</p>
+      <label class="slider-label">Zoom <span id="zoomVal">1.0&times;</span>
+        <input type="range" id="zoom" min="1" max="3" step="0.05" value="1">
+      </label>
+      <label class="slider-label">Panel gap
+        <input type="range" id="gap" min="0" max="24" step="1" value="8">
+      </label>
+    </div>
+
+    <div class="group">
+      <label class="group-label">2 &middot; Layout</label>
+      <div class="layout-grid" id="layoutGrid">
+        <button type="button" data-layout="hero" class="layout-btn active">Split Hero</button>
+        <button type="button" data-layout="strip" class="layout-btn">Triple Strip</button>
+        <button type="button" data-layout="quad" class="layout-btn">Quad Grid</button>
+        <button type="button" data-layout="bleed" class="layout-btn">Full Bleed</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <label class="group-label">3 &middot; Sunset grade</label>
+      <div class="grade-grid" id="gradeGrid">
+        <button type="button" data-grade="vice" class="grade-btn active" style="--sw1:#ff5e3a;--sw2:#7b2ff7">Vice Sunset</button>
+        <button type="button" data-grade="neon" class="grade-btn" style="--sw1:#ff2e88;--sw2:#00e5ff">Neon Nights</button>
+        <button type="button" data-grade="golden" class="grade-btn" style="--sw1:#ffb347;--sw2:#ff7b00">Golden Hour</button>
+        <button type="button" data-grade="teal" class="grade-btn" style="--sw1:#00e5a0;--sw2:#0b6e6e">Palm Teal</button>
+        <button type="button" data-grade="noir" class="grade-btn" style="--sw1:#e8e8e8;--sw2:#111111">Mono Noir</button>
+      </div>
+      <label class="slider-label">Grade strength
+        <input type="range" id="gradeStrength" min="0" max="100" step="1" value="70">
+      </label>
+    </div>
+
+    <div class="group">
+      <label class="group-label">4 &middot; Caption</label>
+      <label class="field">Title
+        <input type="text" id="titleInput" value="VICE SUNSET" maxlength="24">
+      </label>
+      <label class="field">Subtitle
+        <input type="text" id="subtitleInput" value="WELCOME TO LEONIDA" maxlength="48">
+      </label>
+      <label class="field">Badge
+        <input type="text" id="badgeInput" value="EST. 2026" maxlength="20">
+      </label>
+      <div class="toggle-row">
+        <label class="check"><input type="checkbox" id="grainToggle" checked> Film grain</label>
+        <label class="check"><input type="checkbox" id="vignetteToggle" checked> Vignette</label>
+      </div>
+    </div>
+
+    <div class="group">
+      <label class="group-label">5 &middot; Export PNG</label>
+      <div class="export-grid">
+        <button class="btn export" type="button" data-export="square">1080 &times; 1080</button>
+        <button class="btn export" type="button" data-export="portrait">1080 &times; 1350</button>
+        <button class="btn export" type="button" data-export="wide">1920 &times; 1080</button>
+        <button class="btn export primary" type="button" id="exportAll">Export all three</button>
+      </div>
+      <p class="hint">Exports download as PNG files, sized for posting.</p>
+    </div>
+  </section>
+
+  <section class="stage" aria-label="Live preview">
+    <div class="stage-head">
+      <span>Live preview</span>
+      <span id="sizeLabel" class="size-label">1920 &times; 1080</span>
+    </div>
+    <canvas id="preview" width="960" height="540"></canvas>
+    <p class="hint">Tip: pick an export size above to preview it, then export. Drag a panel to reposition its photo.</p>
+  </section>
+</main>
+<footer class="foot">Vice Sunset Split &middot; an original cover maker &middot; no Rockstar Games artwork, logo or font &middot; MIT</footer>
+<script src="app.js"></script>
+</body>
+</html>
